@@ -72,7 +72,7 @@ def predict(image_path, model, top_k):
     processed_test_image = process_image(test_image)
     prediction = model.predict(np.expand_dims(processed_test_image, axis=0))
     top_values, top_indices = tf.math.top_k(prediction, top_k)
-    top_classes = [class_names[value] for value in top_indices.cpu().numpy()[0]]
+    top_classes = [class_names[value+1] for value in top_indices.cpu().numpy()[0]]
     ## Plotting images
     fig = plt.figure(figsize=(15,10))
     ax = fig.add_subplot(1,2,1)
